@@ -43,8 +43,8 @@ func (coordinator *Coordinator) CommitOnAir(event model.LiveEvent, fence uint64,
 	return nil
 }
 
-func (coordinator *Coordinator) Stop(eventID model.EventID) {
-	coordinator.state.Stop(eventID, coordinator.clock())
+func (coordinator *Coordinator) Stop(eventID model.EventID) bool {
+	return coordinator.state.Stop(eventID, coordinator.clock())
 }
 
 func (coordinator *Coordinator) Output(eventID model.EventID) (Output, bool) {
