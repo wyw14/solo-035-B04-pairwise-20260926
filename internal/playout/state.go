@@ -61,7 +61,10 @@ func (state *State) Publish(eventID model.EventID, revision model.RevisionID, fe
 func (state *State) Stop(eventID model.EventID, now time.Time) {
 	state.mu.Lock()
 	defer state.mu.Unlock()
-	output := state.outputs[eventID]
+	output, ok := state.outputs[eventID]
+	if !ok {
+		return
+	}
 	output.OnAir = false
 	output.UpdatedAt = now.UTC()
 	state.outputs[eventID] = output
