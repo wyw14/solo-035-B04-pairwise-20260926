@@ -1,0 +1,5 @@
+.git
+.claude
+.verification-cache
+runtime-data
+*.log
